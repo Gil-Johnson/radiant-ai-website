@@ -781,28 +781,79 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* LEAD FORM */
-  .lead-form {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 0;
+  /* CONTACT FORM */
+  .contact-form-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
-  .lead-form input {
-    padding: 14px 24px;
-    border-radius: 100px;
-    border: 1.5px solid rgba(255,255,255,0.2);
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 12px;
+  }
+
+  .contact-form input,
+  .form-row input {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.15);
     background: rgba(255,255,255,0.08);
     color: var(--white);
     font-size: 15px;
     font-family: 'Outfit', sans-serif;
     outline: none;
-    width: 280px;
+    transition: border-color 0.2s;
   }
 
-  .lead-form input::placeholder { color: rgba(255,255,255,0.4); }
-  .lead-form input:focus { border-color: var(--accent); }
+  .contact-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .contact-form input:focus { border-color: var(--accent); }
+
+  .contact-form .btn-primary {
+    width: 100%;
+    padding: 16px;
+    font-size: 15px;
+    background: var(--accent);
+    margin-top: 4px;
+  }
+
+  .contact-form .btn-primary:hover { background: #a07c55; }
+
+  .thank-you p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 16px 24px; }
+    nav ul { gap: 16px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-stat-row { flex-wrap: wrap; gap: 24px; justify-content: center; }
+    .problem { padding: 80px 24px; }
+    .problem-cards { grid-template-columns: 1fr; }
+    .how { padding: 80px 24px; }
+    .how-steps { grid-template-columns: 1fr; gap: 32px; }
+    .how-steps::before { display: none; }
+    .features { padding: 80px 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .comparison { padding: 80px 24px; }
+    .compare-header, .compare-row { grid-template-columns: 1fr 1fr 1fr; font-size: 12px; padding: 14px 16px; }
+    .cta { padding: 100px 24px; }
+    .form-row { flex-direction: column; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
+    footer nav ul { justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -813,7 +864,7 @@
   <ul>
     <li><a href="#how">How it works</a></li>
     <li><a href="#features">Features</a></li>
-    <li><a href="#demo" class="nav-cta">Book a demo</a></li>
+    <li><a href="mailto:hello@radiantaiapp.com?subject=Radiant AI Demo Request&body=Hi, I'd like to see a demo of Radiant AI for my practice." class="nav-cta">Book a demo</a></li>
   </ul>
 </nav>
 
@@ -821,9 +872,9 @@
 <section class="hero">
   <div class="hero-badge">Built for aesthetic & wellness practices</div>
   <h1>Never lose a lead<br>to <em>silence</em> again.</h1>
-  <p class="hero-sub">Radiant AI responds to every missed call and inbound text instantly — 24/7 — so your practice captures every lead, even while you sleep.</p>
+  <p class="hero-sub">Radiant AI answers every call instantly, 24/7 — handling questions, capturing leads, and sending booking links automatically. So your practice never misses an opportunity, even while you sleep.</p>
   <div class="hero-actions">
-    <a href="#demo" class="btn-primary">Book a free demo</a>
+    <a href="mailto:hello@radiantaiapp.com?subject=Radiant AI Demo Request&body=Hi, I'd like to see a demo of Radiant AI for my practice." class="btn-primary">Book a free demo</a>
     <a href="#how" class="btn-ghost">See how it works</a>
   </div>
   <div class="hero-stat-row">
@@ -880,28 +931,28 @@
     <div class="how-steps">
       <div class="step">
         <div class="step-dot">📞</div>
-        <h4>Missed call</h4>
-        <p>Someone calls your practice and nobody answers</p>
+        <h4>Call comes in</h4>
+        <p>Someone calls your practice — day or night</p>
       </div>
       <div class="step">
-        <div class="step-dot">⚡</div>
-        <h4>Instant text back</h4>
-        <p>Radiant AI texts them within seconds in your brand voice</p>
+        <div class="step-dot">🤖</div>
+        <h4>AI answers instantly</h4>
+        <p>No hold music, no voicemail. Your AI picks up every time.</p>
       </div>
       <div class="step">
         <div class="step-dot">💬</div>
-        <h4>AI conversation</h4>
-        <p>Answers questions about services, pricing, and availability</p>
+        <h4>Handles the conversation</h4>
+        <p>Answers questions about services, pricing, and availability naturally — trained on your specific practice.</p>
       </div>
       <div class="step">
         <div class="step-dot">📅</div>
-        <h4>Sends booking link</h4>
-        <p>Drops your booking link when they're ready to schedule</p>
+        <h4>Captures the lead</h4>
+        <p>Booking link sent at the right moment. New lead created automatically in your dashboard.</p>
       </div>
       <div class="step">
-        <div class="step-dot">🤝</div>
-        <h4>Hands off to staff</h4>
-        <p>Medical or sensitive? AI steps back and alerts your team</p>
+        <div class="step-dot">👥</div>
+        <h4>Staff sees everything</h4>
+        <p>Full call transcript appears in your inbox the moment the call ends. Jump in anytime or let AI handle it.</p>
       </div>
     </div>
   </div>
@@ -917,12 +968,12 @@
     <div class="features-grid">
       <div class="feature-card">
         <span class="feature-icon">📲</span>
-        <h3>Missed call text-back</h3>
-        <p>The moment a call goes unanswered, your lead gets a personalized text — before they dial your competitor.</p>
+        <h3>24/7 AI Voice Answering</h3>
+        <p>Your AI answers every inbound call instantly — no voicemail, no hold music. Handles questions, captures the lead, and transfers to staff when needed.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🤖</span>
-        <h3>Inbound SMS AI</h3>
+        <h3>Inbound AI Responses</h3>
         <p>Your AI knows your services, pricing, and policies. It answers questions like a knowledgeable front desk — never makes anything up.</p>
       </div>
       <div class="feature-card">
@@ -979,7 +1030,7 @@
       <div class="compare-row">
         <div>Simple pricing</div>
         <div class="no">$500+ /mo</div>
-        <div class="radiant">✓ From $349/mo</div>
+        <div class="radiant">✓ From $499/mo</div>
       </div>
       <div class="compare-row">
         <div>No long-term contract</div>
@@ -996,23 +1047,35 @@
 </section>
 
 
-<!-- TESTIMONIAL -->
-<section class="testimonial">
-  <blockquote>"We were losing leads every weekend and didn't even know it. Radiant AI texts back instantly — our booking rate went up in the first week."</blockquote>
-  <cite>Med Spa Owner, Chicago IL</cite>
-</section>
 
-<!-- CTA -->
+<!-- CONTACT -->
 <section class="cta" id="demo">
-  <h2>Your next lead is<br>calling <em>right now.</em></h2>
-  <p>See Radiant AI in action — live demo, no commitment, set up same day.</p>
-  <div class="cta-actions">
-    <div class="lead-form">
-      <input type="email" placeholder="Your email address">
-      <a href="#" class="btn-primary">Book a demo</a>
+  <h2>See Radiant AI <em>live.</em></h2>
+  <p>Drop us your name and number and we'll reach out to set up a quick 10-minute demo.</p>
+  <div class="contact-form-wrap" id="contactWrap">
+    <form class="contact-form" action="https://formsubmit.co/hello@radiantaiapp.com" method="POST">
+      <input type="hidden" name="_subject" value="New Radiant AI Demo Request">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://www.radiantaiapp.com/?submitted=true">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="tel" name="phone" placeholder="Phone number" required>
+      </div>
+      <input type="text" name="practice" placeholder="Practice name (optional)">
+      <button type="submit" class="btn-primary">Request a demo</button>
+    </form>
+    <div class="thank-you" id="thankYou" style="display:none;">
+      <p>We'll be in touch within 24 hours.</p>
     </div>
   </div>
 </section>
+
+<script>
+  if (window.location.search.includes('submitted=true')) {
+    document.querySelector('.contact-form').style.display = 'none';
+    document.getElementById('thankYou').style.display = 'block';
+  }
+</script>
 
 <!-- FOOTER -->
 <footer>
