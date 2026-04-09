@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiant AI — Never Miss a Med Spa Lead Again</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #fafaf8;
+    --warm-gray: #f2f0ec;
+    --text: #1a1a18;
+    --text-muted: #6b6b65;
+    --accent: #b5936a;
+    --accent-light: #f5ede3;
+    --border: #e8e4de;
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--text) !important;
+    color: var(--white) !important;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 48px 80px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(181,147,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--text);
+    max-width: 900px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease 0.2s both;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .btn-primary {
+    background: var(--text);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    color: var(--text-muted);
+    font-size: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--text); }
+  .btn-ghost::after { content: '→'; }
+
+  .hero-stat-row {
+    display: flex;
+    gap: 48px;
+    margin-top: 80px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+
+  .hero-stat h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .hero-stat p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* PROBLEM */
+  .problem {
+    background: var(--text);
+    color: var(--white);
+    padding: 120px 48px;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .problem h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
+
+  .problem p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    margin: 0 auto 64px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .problem-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 960px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .problem-card {
+    background: #222220;
+    padding: 40px 32px;
+    text-align: left;
+  }
+
+  .problem-card .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .problem-card h4 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .problem-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 120px 48px;
+    background: var(--off-white);
+  }
+
+  .how-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .how-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .how-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px;
+    position: relative;
+  }
+
+  .step-dot {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.2s;
+  }
+
+  .step:hover .step-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.1);
+  }
+
+  .step h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .step p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* FEATURES */
+  .features {
+    padding: 120px 48px;
+    background: var(--white);
+  }
+
+  .features-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .feature-card {
+    background: var(--white);
+    padding: 40px 36px;
+    transition: background 0.2s;
+  }
+
+  .feature-card:hover {
+    background: var(--accent-light);
+  }
+
+  .feature-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .feature-card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* COMPARISON */
+  .comparison {
+    padding: 120px 48px;
+    background: var(--warm-gray);
+  }
+
+  .comparison-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .comparison-inner h2 {
+    margin-bottom: 64px;
+  }
+
+  .compare-table {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .compare-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--text);
+    color: var(--white);
+    padding: 20px 32px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .compare-header div:first-child { text-align: left; }
+  .compare-header div { text-align: center; }
+  .compare-header .highlight { color: var(--accent); }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+
+  .compare-row:hover { background: var(--off-white); }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row div:first-child { text-align: left; color: var(--text); font-weight: 400; }
+  .compare-row div { text-align: center; color: var(--text-muted); }
+  .compare-row .yes { color: #2d9e6e; font-weight: 600; }
+  .compare-row .no { color: #e05c5c; }
+  .compare-row .radiant { color: var(--accent); font-weight: 600; }
+
+  /* PRICING */
+  .pricing {
+    padding: 120px 48px;
+    background: var(--white);
+    text-align: center;
+  }
+
+  .pricing-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pricing-inner h2 { margin-bottom: 16px; }
+
+  .pricing-sub {
+    color: var(--text-muted);
+    margin-bottom: 64px;
+    font-size: 17px;
+    font-weight: 300;
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .pricing-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    text-align: left;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .pricing-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+  }
+
+  .pricing-card.featured {
+    background: var(--text);
+    color: var(--white);
+    border-color: var(--text);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .plan-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .pricing-card.featured .plan-price { color: var(--white); }
+
+  .plan-price span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .pricing-card.featured .plan-price span { color: rgba(255,255,255,0.5); }
+
+  .plan-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .pricing-card.featured .plan-desc { color: rgba(255,255,255,0.6); }
+
+  .plan-features {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .plan-features li {
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pricing-card.featured .plan-features li {
+    color: rgba(255,255,255,0.7);
+    border-bottom-color: rgba(255,255,255,0.1);
+  }
+
+  .plan-features li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .plan-btn {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+  }
+
+  .plan-btn:hover {
+    background: var(--text);
+    color: var(--white);
+    border-color: var(--text);
+  }
+
+  .pricing-card.featured .plan-btn {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+
+  .pricing-card.featured .plan-btn:hover {
+    background: #a07c55;
+  }
+
+  /* TESTIMONIAL */
+  .testimonial {
+    padding: 120px 48px;
+    background: var(--accent-light);
+    text-align: center;
+  }
+
+  .testimonial blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    max-width: 800px;
+    margin: 0 auto 32px;
+    line-height: 1.4;
+  }
+
+  .testimonial cite {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 160px 48px;
+    background: var(--text);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(181,147,106,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta h2 {
+    color: var(--white);
+    font-size: clamp(40px, 6vw, 80px);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .cta h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cta p {
+    color: rgba(255,255,255,0.6);
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    position: relative;
+  }
+
+  .cta .btn-primary {
+    background: var(--accent);
+  }
+
+  .cta .btn-primary:hover {
+    background: #a07c55;
+  }
+
+  .cta .btn-ghost {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .cta .btn-ghost:hover {
+    color: var(--white);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .logo { color: var(--white); }
+
+  footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  footer nav ul {
+    gap: 24px;
+  }
+
+  footer nav ul a {
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+  }
+
+  footer nav ul a:hover {
+    color: var(--white);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* LEAD FORM */
+  .lead-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .lead-form input {
+    padding: 14px 24px;
+    border-radius: 100px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    width: 280px;
+  }
+
+  .lead-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .lead-form input:focus { border-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Radiant <span>AI</span></a>
+  <ul>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#demo" class="nav-cta">Book a demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Built exclusively for med spas</div>
+  <h1>Never lose a lead<br>to <em>silence</em> again.</h1>
+  <p class="hero-sub">Radiant AI responds to every missed call and inbound text instantly — 24/7 — so your med spa captures every lead, even while you sleep.</p>
+  <div class="hero-actions">
+    <a href="#demo" class="btn-primary">Book a free demo</a>
+    <a href="#how" class="btn-ghost">See how it works</a>
+  </div>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <h3>78%</h3>
+      <p>of clients book with<br>whoever responds first</p>
+    </div>
+    <div class="hero-stat">
+      <h3>40%</h3>
+      <p>of med spa calls<br>go unanswered</p>
+    </div>
+    <div class="hero-stat">
+      <h3>&lt;30s</h3>
+      <p>average Radiant AI<br>response time</p>
+    </div>
+    <div class="hero-stat">
+      <h3>24/7</h3>
+      <p>always on, even<br>after hours</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <span class="section-label">The problem</span>
+  <h2>Your leads aren't waiting for you to call back.</h2>
+  <p>Every missed call or slow response is a client booking with your competitor. The math is brutal.</p>
+  <div class="problem-cards">
+    <div class="problem-card">
+      <div class="num">$400</div>
+      <h4>Average treatment value</h4>
+      <p>One missed lead costs you real money — not just a missed call.</p>
+    </div>
+    <div class="problem-card">
+      <div class="num">5x</div>
+      <h4>More likely to convert</h4>
+      <p>Leads contacted within 5 minutes are 5x more likely to book vs. waiting an hour.</p>
+    </div>
+    <div class="problem-card">
+      <div class="num">0</div>
+      <h4>Automated follow-up</h4>
+      <p>Most med spas have zero automated follow-up after a missed call. That ends today.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <span class="section-label">How it works</span>
+      <h2>Five moments. Zero missed leads.</h2>
+    </div>
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-dot">📞</div>
+        <h4>Missed call</h4>
+        <p>Someone calls your spa and nobody answers</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">⚡</div>
+        <h4>Instant text back</h4>
+        <p>Radiant AI texts them within seconds in your brand voice</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">💬</div>
+        <h4>AI conversation</h4>
+        <p>Answers questions about services, pricing, and availability</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">📅</div>
+        <h4>Sends booking link</h4>
+        <p>Drops your booking link when they're ready to schedule</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">🤝</div>
+        <h4>Hands off to staff</h4>
+        <p>Medical or sensitive? AI steps back and alerts your team</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <div class="features-header">
+      <span class="section-label">Features</span>
+      <h2>Everything your front desk<br>can't do after hours.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📲</span>
+        <h3>Missed call text-back</h3>
+        <p>The moment a call goes unanswered, your lead gets a personalized text — before they dial your competitor.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🤖</span>
+        <h3>Inbound SMS AI</h3>
+        <p>Your AI knows your services, pricing, and policies. It answers questions like a knowledgeable front desk — never makes anything up.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <h3>Booking link automation</h3>
+        <p>When a lead shows booking intent, your scheduling link is dropped automatically — right when they're ready.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔔</span>
+        <h3>48-hour follow-up</h3>
+        <p>Lead went quiet? A smart follow-up fires automatically two days later to re-engage before they're gone for good.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">👥</span>
+        <h3>Staff inbox</h3>
+        <p>Your team sees every conversation in one clean inbox. Jump in manually anytime or let the AI keep running.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🛡️</span>
+        <h3>Smart handoff</h3>
+        <p>Medical questions, sensitive topics, or a patient asking for a human? The AI steps back and notifies your staff instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison">
+  <div class="comparison-inner">
+    <span class="section-label">Why Radiant AI</span>
+    <h2>Built for independent med spas.<br>Not enterprise platforms.</h2>
+    <br><br>
+    <div class="compare-table">
+      <div class="compare-header">
+        <div style="text-align:left;">Feature</div>
+        <div>Big platforms</div>
+        <div class="highlight">Radiant AI</div>
+      </div>
+      <div class="compare-row">
+        <div>Med spa specific AI</div>
+        <div class="no">Generic</div>
+        <div class="radiant">✓ Built for med spas</div>
+      </div>
+      <div class="compare-row">
+        <div>Instant SMS text-back</div>
+        <div class="yes">✓</div>
+        <div class="radiant">✓</div>
+      </div>
+      <div class="compare-row">
+        <div>Works with your existing software</div>
+        <div class="no">Requires switching</div>
+        <div class="radiant">✓ Plug and play</div>
+      </div>
+      <div class="compare-row">
+        <div>Simple pricing</div>
+        <div class="no">$500+ /mo</div>
+        <div class="radiant">✓ From $149/mo</div>
+      </div>
+      <div class="compare-row">
+        <div>No long-term contract</div>
+        <div class="no">Annual required</div>
+        <div class="radiant">✓ Month to month</div>
+      </div>
+      <div class="compare-row">
+        <div>Setup time</div>
+        <div class="no">Weeks</div>
+        <div class="radiant">✓ Same day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <span class="section-label">Pricing</span>
+    <h2>Simple, transparent pricing.</h2>
+    <p class="pricing-sub">One recovered lead pays for months of Radiant AI. No contracts. Cancel anytime.</p>
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">$149<span>/mo</span></div>
+        <p class="plan-desc">Perfect for single-location spas getting started with AI lead response.</p>
+        <ul class="plan-features">
+          <li>Missed call text-back</li>
+          <li>Inbound SMS AI responses</li>
+          <li>Booking link automation</li>
+          <li>Staff inbox</li>
+          <li>Up to 500 conversations/mo</li>
+        </ul>
+        <a href="#demo" class="plan-btn">Get started</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-price">$249<span>/mo</span></div>
+        <p class="plan-desc">For growing spas that need advanced follow-up and more conversation volume.</p>
+        <ul class="plan-features">
+          <li>Everything in Starter</li>
+          <li>48-hour follow-up sequences</li>
+          <li>Smart staff handoff alerts</li>
+          <li>Custom AI knowledge base</li>
+          <li>Unlimited conversations</li>
+        </ul>
+        <a href="#demo" class="plan-btn">Get started</a>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$399<span>/mo</span></div>
+        <p class="plan-desc">Multi-location spas and high-volume practices needing full customization.</p>
+        <ul class="plan-features">
+          <li>Everything in Growth</li>
+          <li>Multiple locations</li>
+          <li>Custom AI voice & tone</li>
+          <li>Priority support</li>
+          <li>Dedicated onboarding</li>
+        </ul>
+        <a href="#demo" class="plan-btn">Get started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <blockquote>"We were losing leads every weekend and didn't even know it. Radiant AI texts back instantly — our booking rate went up in the first week."</blockquote>
+  <cite>Med Spa Owner, Chicago IL</cite>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="demo">
+  <h2>Your next lead is<br>calling <em>right now.</em></h2>
+  <p>See Radiant AI in action — live demo, no commitment, set up same day.</p>
+  <div class="cta-actions">
+    <div class="lead-form">
+      <input type="email" placeholder="Your email address">
+      <a href="#" class="btn-primary">Book a demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">Radiant <span>AI</span></a>
+  <p>© 2026 Radiant AI. All rights reserved.</p>
+  <nav>
+    <ul>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</body>
+</html>
