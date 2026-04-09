@@ -412,6 +412,10 @@
     overflow: hidden;
   }
 
+  @media (max-width: 800px) {
+    .features-grid--3 { grid-template-columns: 1fr; }
+  }
+
   .feature-card {
     background: var(--white);
     padding: 40px 36px;
@@ -963,38 +967,23 @@
   <div class="features-inner">
     <div class="features-header">
       <span class="section-label">Features</span>
-      <h2>Everything your front desk<br>can't do after hours.</h2>
+      <h2>Built for practices that can't afford<br>to miss a lead.</h2>
     </div>
-    <div class="features-grid">
+    <div class="features-grid features-grid--3">
       <div class="feature-card">
-        <span class="feature-icon">📲</span>
-        <h3>24/7 AI Voice Answering</h3>
-        <p>Your AI answers every inbound call instantly — no voicemail, no hold music. Handles questions, captures the lead, and transfers to staff when needed.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🤖</span>
-        <h3>Inbound AI Responses</h3>
-        <p>Your AI knows your services, pricing, and policies. It answers questions like a knowledgeable front desk — never makes anything up.</p>
+        <span class="feature-icon">📞</span>
+        <h3>Answers every call. Instantly.</h3>
+        <p>Your AI picks up 24/7, handles questions about services and pricing, and captures the lead — before they call someone else.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">📅</span>
-        <h3>Booking link automation</h3>
-        <p>When a lead shows booking intent, your scheduling link is dropped automatically — right when they're ready.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🔔</span>
-        <h3>48-hour follow-up</h3>
-        <p>Lead went quiet? A smart follow-up fires automatically two days later to re-engage before they're gone for good.</p>
+        <h3>Books while you sleep.</h3>
+        <p>When a lead is ready to schedule, your booking link goes out automatically. No follow-up needed. No leads left waiting.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">👥</span>
-        <h3>Staff inbox</h3>
-        <p>Your team sees every conversation in one clean inbox. Jump in manually anytime or let the AI keep running.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🛡️</span>
-        <h3>Smart handoff</h3>
-        <p>Medical questions, sensitive topics, or a patient asking for a human? The AI steps back and notifies your staff instantly.</p>
+        <h3>Your team stays in control.</h3>
+        <p>Every call, every conversation, one inbox. Jump in anytime or let the AI run. You always have the final say.</p>
       </div>
     </div>
   </div>
